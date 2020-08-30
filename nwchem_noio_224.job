@@ -1,0 +1,20 @@
+#!/bin/bash
+#SBATCH -A csc143
+#SBATCH -J nwchem_main
+#SBATCH -N 14
+#SBATCH -t 1:00:00
+
+p=224
+
+date
+echo $p
+module load gcc/6.2.0
+module load rdma-core
+module load openblas/0.3.9-omp
+module load openmpi
+module load hdf5
+
+cd /ccs/home/xinliang/codes/nwchem-sort-trajectory/build/copro
+srun -n $p /ccs/home/xinliang/codes/pca3d/R/adios/nwchem/bin/LINUX64/nwchem copro.nw 
+
+
